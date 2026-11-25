@@ -4,7 +4,9 @@ import fs from "fs";
 const logger = async (req: Request, res: Response, next: NextFunction) => {
   const log = `\n Method : ${req.method} | URL : ${req.url} | Time: ${Date.now()} \n`;
   fs.appendFile("logger.txt", log, (err) => {
-    console.log(err);
+    if (err) {
+      console.log(err);
+    }
   });
 
   next();
