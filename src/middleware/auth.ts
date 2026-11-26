@@ -45,15 +45,15 @@ const auth = (...roles: Role[]) => {
         });
       }
 
-      req.user = decode; //* req er moddhe user thake na , eke globally declare kora lage jeita "index.d.ts" file e  kora hoyeche
-      // console.log(decode);
-
       if (roles.length && !roles.includes(user.rows[0].role)) {
         return res.status(401).json({
           status: false,
           message: "Unauthorized access !",
         });
       }
+
+      req.user = decode; //* req er moddhe user thake na , eke globally declare kora lage jeita "index.d.ts" file e  kora hoyeche
+      // console.log(decode);
 
       next();
     } catch (error) {
